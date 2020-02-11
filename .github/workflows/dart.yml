@@ -1,0 +1,31 @@
+name: Dart CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image:  google/dart:latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup mock_creator_generator
+        working-directory: ./mock_creator_generator
+        run:  |
+          pub get
+          pub run build_runner build --delete-conflicting-outputs
+      - name: Run tests mock_creator_generator
+        working-directory: ./mock_creator_generator
+        run: pub run test
+      - name: Setup example
+        working-directory: ./example
+        run:  |
+          pub get
+          pub run build_runner build --delete-conflicting-outputs
+      - name: Run tests Example
+        working-directory: ./example
+        run: pub run test
+
