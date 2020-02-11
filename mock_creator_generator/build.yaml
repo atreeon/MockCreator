@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      mock_creator_generator|mock_creator:
+        enabled: true
+ 
+builders:
+  mock_creator:
+    target: ":mock_creator_generator"
+    import: "package:mock_creator_generator/mock_creator_generator.dart"
+    builder_factories: ["mockCreatorBuilder"]
+    build_extensions: {".dart": [".x.g.part"]}
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
