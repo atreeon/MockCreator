@@ -1,4 +1,5 @@
 import 'package:mock_creator_generator/src/createMockCreator.dart';
+import 'package:mock_creator_generator/src/helpers.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -11,7 +12,7 @@ void main() {
       var result = createMockCreator(
         className: className,
         returnType: returnType,
-        params: params,
+        paramsNormal: params, paramsNamed: <NameType>[],
       );
 
       var expected = """class Stuffer_Mock extends Stuffer {

@@ -10,13 +10,32 @@ String classDefinition(String className) {
   return "class ${className}_Mock extends ${className} {";
 }
 
+class NameType {
+  final String type;
+  final String name;
+
+  NameType(this.name, this.type);
+
+  toString() => "name:${this.name}|type:${this.type}";
+}
+
 //final String Function(String name,) fn;
-String functionDefinition(String returnType, List<String> params) {
-  var params2 = params //
+String functionDefinition(String returnType, List<String> paramsNormal, List<NameType> paramsNamed) {
+  if (paramsNormal.length > 0) {
+    var params2 = paramsNormal //
+        .mapIndexed((index, x) => //
+            "$x ${String.fromCharCode(index + 97)}")
+        .join(", ");
+
+    return "final $returnType Function($params2) fn;";
+  }
+
+  var params2 = paramsNamed //
       .mapIndexed((index, x) => //
-          "$x ${String.fromCharCode(index + 97)}")
+          "${x.type} ${String.fromCharCode(index + 97)}")
       .join(", ");
-  return "final $returnType Function($params2) fn;";
+
+  return "final $returnType Function({$params2}) fn;";
 }
 
 //SalutationAppender_Mock(this.fn);
@@ -25,17 +44,30 @@ String constructorSignature(String className) {
 }
 
 //List<String> call(String a, List<String> b) => fn(a, b);
-String callMethod(String returnType, List<String> params) {
-  var paramsCallSignature = params //
+String callMethod(String returnType, List<String> paramsNormal, List<NameType> paramsNamed) {
+  if (paramsNormal.length > 0) {
+    var paramsCallSignature = paramsNormal //
+        .mapIndexed((index, x) => //
+            "$x ${String.fromCharCode(index + 97)}")
+        .join(", ");
+
+    var fnParams = paramsNormal //
+        .mapIndexed((index, x) => String.fromCharCode(index + 97))
+        .join(", ");
+
+    return "$returnType call($paramsCallSignature) => fn($fnParams);";
+  }
+
+  var paramsCallSignature = paramsNamed //
       .mapIndexed((index, x) => //
-          "$x ${String.fromCharCode(index + 97)}")
+          "${x.type} ${x.name}")
       .join(", ");
 
-  var fnParams = params //
-      .mapIndexed((index, x) => String.fromCharCode(index + 97))
+  var fnParams = paramsNamed //
+      .mapIndexed((index, x) => String.fromCharCode(index + 97) + ":${x.name}")
       .join(", ");
 
-  return "$returnType call($paramsCallSignature) => fn($fnParams);";
+  return "$returnType call({$paramsCallSignature}) => fn($fnParams);";
 }
 
 //String getCopyWithParamList(
