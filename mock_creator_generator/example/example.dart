@@ -3,6 +3,8 @@ import 'package:mock_creator_annotation/mock_creator_annotation.dart';
 
 //see example project in github
 
+part 'example.g.dart';
+
 @MockCreator()
 class SalutationAppender {
   String call(String name, int someInt, List<int> someGeneric) {
