@@ -34,6 +34,16 @@ void main() {
 
       expect(result, "final List<String> Function({String a, int b}) fn;");
     });
+
+    test("3 zero parameters", () {
+      var returnType = "List<String>";
+      var params = <String>[];
+      var paramsNamed = <NameType>[];
+
+      var result = functionDefinition(returnType, params, paramsNamed);
+
+      expect(result, "final List<String> Function() fn;");
+    });
   });
 
   group("constructorSignature", () {
@@ -63,6 +73,16 @@ void main() {
       var result = callMethod(returnType, params, paramsNamed);
 
       expect(result, "List<String> call({String param1, int param2}) => fn(a:param1, b:param2);");
+    });
+
+    test("3 zero parameters", () {
+      var returnType = "List<String>";
+      var params = <String>[];
+      var paramsNamed = <NameType>[];
+
+      var result = callMethod(returnType, params, paramsNamed);
+
+      expect(result, "List<String> call() => fn();");
     });
   });
 }

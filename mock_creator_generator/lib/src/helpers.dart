@@ -21,6 +21,10 @@ class NameType {
 
 //final String Function(String name,) fn;
 String functionDefinition(String returnType, List<String> paramsNormal, List<NameType> paramsNamed) {
+  if (paramsNormal.length == 0 && paramsNamed.length == 0) {
+    return "final $returnType Function() fn;";
+  }
+
   if (paramsNormal.length > 0) {
     var params2 = paramsNormal //
         .mapIndexed((index, x) => //
@@ -45,6 +49,10 @@ String constructorSignature(String className) {
 
 //List<String> call(String a, List<String> b) => fn(a, b);
 String callMethod(String returnType, List<String> paramsNormal, List<NameType> paramsNamed) {
+  if (paramsNormal.length == 0 && paramsNamed.length == 0) {
+    return "$returnType call() => fn();";
+  }
+
   if (paramsNormal.length > 0) {
     var paramsCallSignature = paramsNormal //
         .mapIndexed((index, x) => //
