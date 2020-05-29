@@ -1,3 +1,6 @@
+## 1.0.5
+- Supports mixed positional and named params
+
 ## 1.0.4
 - Supports zero length parameters
 

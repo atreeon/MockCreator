@@ -15,7 +15,7 @@ void main() {
   });
 
   group("functionDefinition", () {
-    test("1 b", () {
+    test("1 all positional", () {
       var returnType = "List<String>";
       var params = ["String", "List<String>"];
       var paramsNamed = <NameType>[];
@@ -25,7 +25,7 @@ void main() {
       expect(result, "final List<String> Function(String a, List<String> b) fn;");
     });
 
-    test("2 b", () {
+    test("2 all named params", () {
       var returnType = "List<String>";
       var params = <String>[];
       var paramsNamed = [NameType("param1", "String"), NameType("param2", "int")];
@@ -43,6 +43,16 @@ void main() {
       var result = functionDefinition(returnType, params, paramsNamed);
 
       expect(result, "final List<String> Function() fn;");
+    });
+
+    test("4 mixture named and positional", () {
+      var returnType = "List<String>";
+      var params = <String>["String"];
+      var paramsNamed = [NameType("param1", "String")];
+
+      var result = functionDefinition(returnType, params, paramsNamed);
+
+      expect(result, "final List<String> Function(String a, {String b}) fn;");
     });
   });
 
@@ -83,6 +93,16 @@ void main() {
       var result = callMethod(returnType, params, paramsNamed);
 
       expect(result, "List<String> call() => fn();");
+    });
+
+    test("4 mixture named and positional", () {
+      var returnType = "List<String>";
+      var params = <String>["String"];
+      var paramsNamed = [NameType("param2", "String")];
+
+      var result = callMethod(returnType, params, paramsNamed);
+
+      expect(result, "List<String> call(String a, {String param2}) => fn(a, b:param2);");
     });
   });
 }
