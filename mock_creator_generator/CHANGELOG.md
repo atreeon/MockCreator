@@ -1,3 +1,6 @@
+## 1.0.6
+- Creates a well named fndef for the call method
+
 ## 1.0.5
 - Supports mixed positional and named params
 

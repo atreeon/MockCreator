@@ -7,19 +7,22 @@ void main() {
     test("1", () {
       var className = "Stuffer";
       var returnType = "List<String>";
-      var params = ["String", "List<String>"];
+      var params = <NameType>[NameType("name", "String"), NameType("myList", "List<String>")];
 
       var result = createMockCreator(
         className: className,
         returnType: returnType,
-        paramsNormal: params, paramsNamed: <NameType>[],
+        paramsNormal: params,
+        paramsNamed: <NameType>[],
       );
 
       var expected = """class Stuffer_Mock extends Stuffer {
 final List<String> Function(String a, List<String> b) fn;
 Stuffer_Mock(this.fn);
 List<String> call(String a, List<String> b) => fn(a, b);
-}""";
+}
+
+typedef fn_Stuffer = List<String> Function(String name, List<String> myList);""";
 
       expect(result.trim(), expected.trim());
     });

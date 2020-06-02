@@ -64,6 +64,41 @@ void main() {
     });
   });
 
+  group("create fn def", () {
+    test("1 zero params", () {
+      var callableName = "GetLectures";
+      var returnType = "List<String>";
+      var paramsPositional = <NameType>[];
+      var paramsNamed = <NameType>[];
+
+      var result = createFnDef(callableName, returnType, paramsPositional, paramsNamed);
+
+      expect(result, "typedef fn_GetLectures = List<String> Function();");
+    });
+
+    test("2 one positional param", () {
+      var callableName = "GetLectures";
+      var returnType = "List<String>";
+      var paramsPositional = <NameType>[NameType("name", "String")];
+      var paramsNamed = <NameType>[];
+
+      var result = createFnDef(callableName, returnType, paramsPositional, paramsNamed);
+
+      expect(result, "typedef fn_GetLectures = List<String> Function(String name);");
+    });
+
+    test("3 mixed params", () {
+      var callableName = "GetLectures";
+      var returnType = "List<String>";
+      var paramsPositional = <NameType>[NameType("name", "String")];
+      var paramsNamed = <NameType>[NameType("id", "int")];
+
+      var result = createFnDef(callableName, returnType, paramsPositional, paramsNamed);
+
+      expect(result, "typedef fn_GetLectures = List<String> Function(String name, {int id});");
+    });
+  });
+
   group("callMethod", () {
     test("1 d", () {
       var returnType = "List<String>";

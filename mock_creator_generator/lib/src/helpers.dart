@@ -86,3 +86,30 @@ String callMethod(String returnType, List<String> paramsPositional, List<NameTyp
 
   return "$returnType call($callSig) => fn($fnParams);";
 }
+
+String createFnDef(String callableName, String returnType, List<NameType> paramsPositional, List<NameType> paramsNamed) {
+  if (paramsPositional.length == 0 && paramsNamed.length == 0) {
+    return "typedef fn_$callableName = $returnType Function();";
+  }
+
+  var paramsPositionalCallSignature = List<String>();
+
+  paramsPositional.forEach((x) {
+    paramsPositionalCallSignature.add("${x.type} ${x.name}");
+  });
+
+  var paramsNamedCallSignature = List<String>();
+
+  paramsNamed.forEach((x) {
+    paramsNamedCallSignature.add("${x.type} ${x.name}");
+  });
+
+  var callSig = [
+    if (paramsPositionalCallSignature.isNotEmpty) //
+      paramsPositionalCallSignature.join(", "),
+    if (paramsNamedCallSignature.isNotEmpty) //
+      "{" + paramsNamedCallSignature.join(", ") + "}",
+  ].join(", ");
+
+  return "typedef fn_$callableName = $returnType Function($callSig);";
+}
