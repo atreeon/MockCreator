@@ -1,3 +1,6 @@
+## 1.0.8
+- Update dependencies (dartx)
+
 ## 1.0.7
 - Possible fix to the analysis exception errors by removing getResolvedLibraryByElement
 

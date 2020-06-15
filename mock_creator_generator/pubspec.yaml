@@ -1,6 +1,6 @@
 name: mock_creator_generator
 description: Creates a mock for classes with a single call method making it easy for us to create those mocks automatically.
-version: 1.0.7
+version: 1.0.8
 homepage: https://github.com/atreeon/MockCreator
  
 environment:  
@@ -10,7 +10,7 @@ dependencies:
   build: ^1.2.2
   source_gen: ^0.9.4+7
   mock_creator_annotation: ^1.0.1
-  dartx: ^0.3.0
+  dartx: '>=0.3.0 <0.7.0'
   quiver: ^2.0.1
   dartz: ^0.8.3
   basic_utils: ^2.4.8
