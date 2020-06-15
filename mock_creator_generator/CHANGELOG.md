@@ -1,3 +1,6 @@
+## 1.0.7
+- Possible fix to the analysis exception errors by removing getResolvedLibraryByElement
+
 ## 1.0.6
 - Creates a well named fndef for the call method
 

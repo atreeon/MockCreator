@@ -53,8 +53,8 @@ class MockCreatorGenerator extends GeneratorForAnnotationX<MockCreator> {
       ));
     }
 
-    return element.session.getResolvedLibraryByElement(element.library).then((resolvedLibrary) {
-      return sb.toString();
-    });
+    return sb.toString();
+//    return element.session.getResolvedLibraryByElement(element.library).then((resolvedLibrary) {
+//    });
   }
 }

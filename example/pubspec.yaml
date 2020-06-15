@@ -6,11 +6,13 @@ environment:
 dependencies:
   #todo: change this to pub version if I release this
   mock_creator_annotation: ^1.0.1
+  meta: any
 
 dev_dependencies:
   build_runner: ^1.7.3
   test: ^1.9.3
   mockito: 4.1.1
+
   mock_creator_generator:
     path: ../mock_creator_generator/
 
