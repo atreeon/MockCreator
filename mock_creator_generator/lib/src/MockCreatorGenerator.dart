@@ -28,16 +28,19 @@ class MockCreatorGenerator extends GeneratorForAnnotationX<MockCreator> {
       var paramsPositional2 = callMethod.type.parameters.where((x) => x.isPositional);
       var paramsNamed2 = callMethod.type.parameters.where((x) => x.isNamed);
 
+//      sb.writeln("//paramsPositional2:" + paramsPositional2.map((e) => e.type.toString()).join(","));
+//      sb.writeln("//paramsNamed2:" + paramsNamed2.map((e) => e.type.toString()).join(","));
+
       var paramsPositional = paramsPositional2
           .map((x) => NameType(
-                x.name,
-                x.type.toString(),
+                x.name.toString().replaceAll("*", ""),
+                x.type.toString().replaceAll("*", ""),
               ))
           .toList();
       var paramsNamed = paramsNamed2
           .map((x) => NameType(
-                x.name,
-                x.type.toString(),
+                x.name.toString().replaceAll("*", ""),
+                x.type.toString().replaceAll("*", ""),
               ))
           .toList();
 
@@ -47,7 +50,7 @@ class MockCreatorGenerator extends GeneratorForAnnotationX<MockCreator> {
 
       sb.writeln(createMockCreator(
         className: name,
-        returnType: returnType,
+        returnType: returnType.toString().replaceAll("*", ""),
         paramsNormal: paramsPositional,
         paramsNamed: paramsNamed,
       ));

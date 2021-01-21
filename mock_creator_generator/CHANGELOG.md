@@ -1,3 +1,6 @@
+## 1.0.9
+- Update analyzer & typedef_for_fn dependency
+
 ## 1.0.8
 - Update dependencies (dartx)
 

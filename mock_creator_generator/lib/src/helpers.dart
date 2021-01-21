@@ -52,8 +52,8 @@ String callMethod(String returnType, List<String> paramsPositional, List<NameTyp
 
   var index = 0;
 
-  var paramsPositionalCallSignature = List<String>();
-  var paramsPositionalFunction = List<String>();
+  List<String> paramsPositionalCallSignature = [];
+  List<String> paramsPositionalFunction = [];
 
   paramsPositional.forEach((x) {
     paramsPositionalCallSignature.add("$x ${String.fromCharCode(index + 97)}");
@@ -61,8 +61,8 @@ String callMethod(String returnType, List<String> paramsPositional, List<NameTyp
     index++;
   });
 
-  var paramsNamedCallSignature = List<String>();
-  var paramsNamedFunction = List<String>();
+  List<String> paramsNamedCallSignature = [];
+  List<String> paramsNamedFunction = [];
 
   paramsNamed.forEach((x) {
     paramsNamedCallSignature.add("${x.type} ${x.name}");
@@ -92,13 +92,13 @@ String createFnDef(String callableName, String returnType, List<NameType> params
     return "typedef fn_$callableName = $returnType Function();";
   }
 
-  var paramsPositionalCallSignature = List<String>();
+  List<String> paramsPositionalCallSignature = [];
 
   paramsPositional.forEach((x) {
     paramsPositionalCallSignature.add("${x.type} ${x.name}");
   });
 
-  var paramsNamedCallSignature = List<String>();
+  List<String> paramsNamedCallSignature = [];
 
   paramsNamed.forEach((x) {
     paramsNamedCallSignature.add("${x.type} ${x.name}");
