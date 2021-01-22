@@ -1,3 +1,15 @@
+## 1.0.13
+- asterisk removals
+
+## 1.0.12
+- @required is now required
+
+## 1.0.11
+- sdk 2.12.0
+
+## 1.0.10
+- Update analyzer & typedef_for_fn dependency
+
 ## 1.0.9
 - Update analyzer & typedef_for_fn dependency
 

@@ -33,14 +33,14 @@ class MockCreatorGenerator extends GeneratorForAnnotationX<MockCreator> {
 
       var paramsPositional = paramsPositional2
           .map((x) => NameType(
-                x.name.toString().replaceAll("*", ""),
-                x.type.toString().replaceAll("*", ""),
+                x.name.toString(),
+                x.type.toString(),
               ))
           .toList();
       var paramsNamed = paramsNamed2
           .map((x) => NameType(
-                x.name.toString().replaceAll("*", ""),
-                x.type.toString().replaceAll("*", ""),
+                x.name.toString(),
+                x.type.toString(),
               ))
           .toList();
 
@@ -50,13 +50,13 @@ class MockCreatorGenerator extends GeneratorForAnnotationX<MockCreator> {
 
       sb.writeln(createMockCreator(
         className: name,
-        returnType: returnType.toString().replaceAll("*", ""),
+        returnType: returnType.toString(),
         paramsNormal: paramsPositional,
         paramsNamed: paramsNamed,
       ));
     }
 
-    return sb.toString();
+    return sb.toString().replaceAll("*", "");
 //    return element.session.getResolvedLibraryByElement(element.library).then((resolvedLibrary) {
 //    });
   }
