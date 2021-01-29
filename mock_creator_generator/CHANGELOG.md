@@ -1,3 +1,6 @@
+## 1.0.14-nullsafety
+- non-nullable
+
 ## 1.0.13
 - asterisk removals
 

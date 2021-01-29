@@ -18,7 +18,7 @@ class MockCreatorGenerator extends GeneratorForAnnotationX<MockCreator> {
   ) {
     var sb = StringBuffer();
 
-    sb.writeln("//RULES: 1: must be a class, 2: must have a call method, 3: either named or normal params, not a mix");
+    sb.writeln("//RULES: 1: must be a class, 2: must have a call method");
 
     if (element is ClassElement) {
       var name = element.name;

@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'package:mock_creator_annotation/mock_creator_annotation.dart';
 import 'package:test/test.dart';
 
@@ -22,15 +21,15 @@ class Person {
   final int age;
 
   Person({
-    @required this.firstName,
-    @required this.lastName,
-    @required this.age,
+    required this.firstName,
+    required this.lastName,
+    required this.age,
   });
 }
 
 @MockCreator()
 class SalutationAppender {
-  String call(String name, int someInt, List<int> someGeneric) {
+  String call(String name, int? someInt, List<int>? someGeneric) {
     if (["Bob", "Rob", "Todd"].contains(name)) {
       return "Mr " + name;
     }

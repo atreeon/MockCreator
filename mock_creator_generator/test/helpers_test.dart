@@ -32,7 +32,7 @@ void main() {
 
       var result = functionDefinition(returnType, params, paramsNamed);
 
-      expect(result, "final List<String> Function({String a, int b}) fn;");
+      expect(result, "final List<String> Function({required String a, required int b}) fn;");
     });
 
     test("3 zero parameters", () {
@@ -52,7 +52,26 @@ void main() {
 
       var result = functionDefinition(returnType, params, paramsNamed);
 
-      expect(result, "final List<String> Function(String a, {String b}) fn;");
+      expect(result, "final List<String> Function(String a, {required String b}) fn;");
+    });
+
+    test("5 mixture named and positional & nullable", () {
+      var returnType = "List<String>";
+      var params = <String>[
+        "String",
+        "int?",
+        "double",
+      ];
+      var paramsNamed = [
+        NameType("param1", "String"),
+        NameType("param2", "int?"),
+      ];
+
+      var result = functionDefinition(returnType, params, paramsNamed);
+
+      expect(
+          result, //
+          "final List<String> Function(String a, int? b, double c, {required String d, int? e}) fn;");
     });
   });
 
@@ -117,10 +136,10 @@ void main() {
 
       var result = callMethod(returnType, params, paramsNamed);
 
-      expect(result, "List<String> call({String param1, int param2}) => fn(a:param1, b:param2);");
+      expect(result, "List<String> call({required String param1, required int param2}) => fn(a:param1, b:param2);");
     });
 
-    test("3 zero parameters", () {
+    test("3 d zero parameters", () {
       var returnType = "List<String>";
       var params = <String>[];
       var paramsNamed = <NameType>[];
@@ -130,14 +149,27 @@ void main() {
       expect(result, "List<String> call() => fn();");
     });
 
-    test("4 mixture named and positional", () {
+    test("4 d mixture named and positional", () {
       var returnType = "List<String>";
       var params = <String>["String"];
       var paramsNamed = [NameType("param2", "String")];
 
       var result = callMethod(returnType, params, paramsNamed);
 
-      expect(result, "List<String> call(String a, {String param2}) => fn(a, b:param2);");
+      expect(result, "List<String> call(String a, {required String param2}) => fn(a, b:param2);");
+    });
+
+    test("5 d mixture named and positional and non null", () {
+      var returnType = "List<String>";
+      var params = <String>["String"];
+      var paramsNamed = [
+        NameType("b", "String?"),
+        NameType("c", "int"),
+      ];
+
+      var result = callMethod(returnType, params, paramsNamed);
+
+      expect(result, "List<String> call(String a, {String? b, required int c}) => fn(a, b:b, c:c);");
     });
   });
 }

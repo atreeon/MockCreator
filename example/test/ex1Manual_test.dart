@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 
 //part 'ex1_test.g.dart';
@@ -21,9 +20,9 @@ class Person {
   final int age;
 
   Person({
-    @required this.firstName,
-    @required this.lastName,
-    @required this.age,
+    required this.firstName,
+    required this.lastName,
+    required this.age,
   });
 }
 

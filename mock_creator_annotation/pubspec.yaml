@@ -1,13 +1,10 @@
 name: mock_creator_annotation
 description: Creates a mock for a class that has one call method on it.  This makes it easier to create our mock classes automatically.
-version: 1.0.1
+version: 1.0.2-nullsafety3
 
 environment:  
-  sdk: ">=2.10.0 <3.0.0"
+  sdk: ">=2.12.0-0 <3.0.0"
 
 dependencies:
-
-dev_dependencies:  
-  test: 1.3.4
 
 homepage: https://github.com/atreeon/MockCreator
