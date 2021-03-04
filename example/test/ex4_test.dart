@@ -1,7 +1,7 @@
 import 'package:mock_creator_annotation/mock_creator_annotation.dart';
 import 'package:test/test.dart';
 
-part 'ex4_test.g.dart';
+part 'ex4_test.mock.dart';
 
 //SUPPORT ZERO PARAMETERS
 

@@ -1,7 +1,7 @@
 import 'package:mock_creator_annotation/mock_creator_annotation.dart';
 import 'package:test/test.dart';
 
-part 'ex7_test.g.dart';
+part 'ex7_test.mock.dart';
 
 //NULLABLE & NULL SAFE
 

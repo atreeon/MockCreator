@@ -1,7 +1,7 @@
 import 'package:mock_creator_annotation/mock_creator_annotation.dart';
 import 'package:test/test.dart';
 
-part 'ex1_test.g.dart';
+part 'ex1_test.mock.dart';
 
 main() {
   test("1", () {

@@ -1,7 +1,7 @@
 import 'package:mock_creator_annotation/mock_creator_annotation.dart';
 import 'package:test/test.dart';
 
-part 'ex2_test.g.dart';
+part 'ex2_test.mock.dart';
 
 //SUPPORT NAMED PARAMETERS
 
