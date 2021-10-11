@@ -1,3 +1,5 @@
+import 'package:generator_common/NameType.dart';
+
 ///in:
 ///out: class SalutationAppender_Mock extends SalutationAppender {
 String classDefinition(String className) {
@@ -14,7 +16,11 @@ class NameType {
 }
 
 //final String Function(String name,) fn;
-String functionDefinition(String returnType, List<String> paramsPositional, List<NameType> paramsNamed) {
+String functionDefinition(
+  String returnType,
+  List<NameTypeClassComment> paramsPositional,
+  List<NameTypeClassComment> paramsNamed,
+) {
   if (paramsPositional.length == 0 && paramsNamed.length == 0) {
     return "final $returnType Function() fn;";
   }
@@ -22,7 +28,7 @@ String functionDefinition(String returnType, List<String> paramsPositional, List
   var index = 0;
 
   var strParamsPositional = paramsPositional.map((x) {
-    return "$x ${String.fromCharCode(index++ + 97)}";
+    return "${x.type} ${String.fromCharCode(index++ + 97)}";
   }).join(", ");
 
   var strParamsNamed = paramsNamed
@@ -48,7 +54,11 @@ String constructorSignature(String className) {
 }
 
 //List<String> call(String a, List<String> b) => fn(a, b);
-String callMethod(String returnType, List<String> paramsPositional, List<NameType> paramsNamed) {
+String callMethod(
+  String returnType,
+  List<NameTypeClassComment> paramsPositional,
+  List<NameTypeClassComment> paramsNamed,
+) {
   if (paramsPositional.length == 0 && paramsNamed.length == 0) {
     return "$returnType call() => fn();";
   }
@@ -59,7 +69,7 @@ String callMethod(String returnType, List<String> paramsPositional, List<NameTyp
   List<String> paramsPositionalFunction = [];
 
   paramsPositional.forEach((x) {
-    paramsPositionalCallSignature.add("$x ${String.fromCharCode(index + 97)}");
+    paramsPositionalCallSignature.add("${x.type} ${String.fromCharCode(index + 97)}");
     paramsPositionalFunction.add(String.fromCharCode(index + 97));
     index++;
   });
@@ -102,7 +112,12 @@ String callMethod(String returnType, List<String> paramsPositional, List<NameTyp
   return "$returnType call($callSig) => fn($fnParams);";
 }
 
-String createFnDef(String callableName, String returnType, List<NameType> paramsPositional, List<NameType> paramsNamed) {
+String createFnDef(
+  String callableName,
+  String returnType,
+  List<NameTypeClassComment> paramsPositional,
+  List<NameTypeClassComment> paramsNamed,
+) {
   if (paramsPositional.length == 0 && paramsNamed.length == 0) {
     return "typedef fn_$callableName = $returnType Function();";
   }

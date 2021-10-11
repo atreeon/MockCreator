@@ -1,5 +1,5 @@
+import 'package:generator_common/NameType.dart';
 import 'package:mock_creator_generator/src/createMockCreator.dart';
-import 'package:mock_creator_generator/src/helpers.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -7,13 +7,16 @@ void main() {
     test("1", () {
       var className = "Stuffer";
       var returnType = "List<String>";
-      var params = <NameType>[NameType("name", "String"), NameType("myList", "List<String>")];
+      var params = <NameTypeClassComment>[
+        NameTypeClassComment("name", "String", null),
+        NameTypeClassComment("myList", "List<String>", null),
+      ];
 
       var result = createMockCreator(
         className: className,
         returnType: returnType,
         paramsNormal: params,
-        paramsNamed: <NameType>[],
+        paramsNamed: <NameTypeClassComment>[],
       );
 
       var expected = """class Stuffer_Mock extends Stuffer {

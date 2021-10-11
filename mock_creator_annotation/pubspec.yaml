@@ -1,6 +1,7 @@
 name: mock_creator_annotation
 description: Creates a mock for a class that has one call method on it.  This makes it easier to create our mock classes automatically.
 version: 1.0.2-nullsafety3
+publish_to: none
 
 environment:  
   sdk: ">=2.12.0-0 <3.0.0"

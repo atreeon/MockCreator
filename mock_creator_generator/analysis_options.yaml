@@ -1,4 +1,18 @@
+linter:
+  rules:
+    camel_case_types: false
+
 analyzer:
   enable-experiment:
     - non-nullable
+  strong-mode:
+    implicit-casts: false
+#    implicit-dynamic: false
 
+
+
+#include: package:pedantic/analysis_options.yaml
+
+#linter:
+# rules:
+#   avoid_shadowing_type_parameters: false

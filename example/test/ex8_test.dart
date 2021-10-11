@@ -1,5 +1,4 @@
 import 'package:mock_creator_annotation/mock_creator_annotation.dart';
-import 'package:quiver_hashcode/hashcode.dart';
 import 'package:test/test.dart';
 import 'package:value_t2_annotation/value_t2_annotation.dart';
 

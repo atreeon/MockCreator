@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/src/builder/build_step.dart';
+import 'package:generator_common/helpers.dart';
 import 'package:mock_creator_annotation/mock_creator_annotation.dart';
 import 'package:mock_creator_generator/src/createMockCreator.dart';
-import 'package:mock_creator_generator/src/helpers.dart';
 import 'package:source_gen/source_gen.dart';
 
 import 'GeneratorForAnnotationX.dart';
@@ -23,36 +23,14 @@ class MockCreatorGenerator extends GeneratorForAnnotationX<MockCreator> {
     if (element is ClassElement) {
       var name = element.name;
       var callMethod = element.getMethod("call");
-      var returnType = callMethod.type.returnType.toString();
 
-      var paramsPositional2 = callMethod.type.parameters.where((x) => x.isPositional);
-      var paramsNamed2 = callMethod.type.parameters.where((x) => x.isNamed);
-
-//      sb.writeln("//paramsPositional2:" + paramsPositional2.map((e) => e.type.toString()).join(","));
-//      sb.writeln("//paramsNamed2:" + paramsNamed2.map((e) => e.type.toString()).join(","));
-
-      var paramsPositional = paramsPositional2
-          .map((x) => NameType(
-                x.name.toString(),
-                x.type.toString(),
-              ))
-          .toList();
-      var paramsNamed = paramsNamed2
-          .map((x) => NameType(
-                x.name.toString(),
-                x.type.toString(),
-              ))
-          .toList();
-
-//      sb.writeln("// returnType:" + returnType);
-//      sb.writeln("// params3:" + paramsPositional.toString());
-//      sb.writeln("// params2:" + paramsNamed.toString());
+      var methodDetails = getMethodDetailsForFunctionType(callMethod, (x) {});
 
       sb.writeln(createMockCreator(
         className: name,
-        returnType: returnType.toString(),
-        paramsNormal: paramsPositional,
-        paramsNamed: paramsNamed,
+        returnType: methodDetails.returnType.toString(),
+        paramsNormal: methodDetails.paramsPositional,
+        paramsNamed: methodDetails.paramsNamed,
       ));
     }
 

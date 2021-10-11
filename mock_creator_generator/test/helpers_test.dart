@@ -2,6 +2,7 @@
 //import 'package:mock_creator_generator/src/helpers.dart';
 //import 'package:test/test.dart';
 //
+import 'package:generator_common/NameType.dart';
 import 'package:mock_creator_generator/src/helpers.dart';
 import 'package:test/test.dart';
 
@@ -17,8 +18,11 @@ void main() {
   group("functionDefinition", () {
     test("1 all positional", () {
       var returnType = "List<String>";
-      var params = ["String", "List<String>"];
-      var paramsNamed = <NameType>[];
+      var params = [
+        NameTypeClassComment("param1", "String", null),
+        NameTypeClassComment("param1", "List<String>", null),
+      ];
+      var paramsNamed = <NameTypeClassComment>[];
 
       var result = functionDefinition(returnType, params, paramsNamed);
 
@@ -27,8 +31,11 @@ void main() {
 
     test("2 all named params", () {
       var returnType = "List<String>";
-      var params = <String>[];
-      var paramsNamed = [NameType("param1", "String"), NameType("param2", "int")];
+      var params = <NameTypeClassComment>[];
+      var paramsNamed = [
+        NameTypeClassComment("param1", "String", null),
+        NameTypeClassComment("param2", "int", null),
+      ];
 
       var result = functionDefinition(returnType, params, paramsNamed);
 
@@ -37,8 +44,8 @@ void main() {
 
     test("3 zero parameters", () {
       var returnType = "List<String>";
-      var params = <String>[];
-      var paramsNamed = <NameType>[];
+      var params = <NameTypeClassComment>[];
+      var paramsNamed = <NameTypeClassComment>[];
 
       var result = functionDefinition(returnType, params, paramsNamed);
 
@@ -47,8 +54,8 @@ void main() {
 
     test("4 mixture named and positional", () {
       var returnType = "List<String>";
-      var params = <String>["String"];
-      var paramsNamed = [NameType("param1", "String")];
+      var params = [NameTypeClassComment("param0", "String", null)];
+      var paramsNamed = [NameTypeClassComment("param1", "String", null)];
 
       var result = functionDefinition(returnType, params, paramsNamed);
 
@@ -57,14 +64,14 @@ void main() {
 
     test("5 mixture named and positional & nullable", () {
       var returnType = "List<String>";
-      var params = <String>[
-        "String",
-        "int?",
-        "double",
+      var params = <NameTypeClassComment>[
+        NameTypeClassComment("param1", "String", null),
+        NameTypeClassComment("param2", "int?", null),
+        NameTypeClassComment("param3", "double", null),
       ];
       var paramsNamed = [
-        NameType("param1", "String"),
-        NameType("param2", "int?"),
+        NameTypeClassComment("param4", "String", null),
+        NameTypeClassComment("param5", "int?", null),
       ];
 
       var result = functionDefinition(returnType, params, paramsNamed);
@@ -87,8 +94,8 @@ void main() {
     test("1 zero params", () {
       var callableName = "GetLectures";
       var returnType = "List<String>";
-      var paramsPositional = <NameType>[];
-      var paramsNamed = <NameType>[];
+      var paramsPositional = <NameTypeClassComment>[];
+      var paramsNamed = <NameTypeClassComment>[];
 
       var result = createFnDef(callableName, returnType, paramsPositional, paramsNamed);
 
@@ -98,8 +105,8 @@ void main() {
     test("2 one positional param", () {
       var callableName = "GetLectures";
       var returnType = "List<String>";
-      var paramsPositional = <NameType>[NameType("name", "String")];
-      var paramsNamed = <NameType>[];
+      var paramsPositional = <NameTypeClassComment>[NameTypeClassComment("name", "String", null)];
+      var paramsNamed = <NameTypeClassComment>[];
 
       var result = createFnDef(callableName, returnType, paramsPositional, paramsNamed);
 
@@ -109,8 +116,8 @@ void main() {
     test("3 mixed params", () {
       var callableName = "GetLectures";
       var returnType = "List<String>";
-      var paramsPositional = <NameType>[NameType("name", "String")];
-      var paramsNamed = <NameType>[NameType("id", "int")];
+      var paramsPositional = <NameTypeClassComment>[NameTypeClassComment("name", "String", null)];
+      var paramsNamed = <NameTypeClassComment>[NameTypeClassComment("id", "int", null)];
 
       var result = createFnDef(callableName, returnType, paramsPositional, paramsNamed);
 
@@ -121,8 +128,11 @@ void main() {
   group("callMethod", () {
     test("1 d", () {
       var returnType = "List<String>";
-      var params = ["String", "List<String>"];
-      var paramsNamed = <NameType>[];
+      var params = [
+        NameTypeClassComment("param1", "String", null),
+        NameTypeClassComment("param1", "List<String>", null),
+      ];
+      var paramsNamed = <NameTypeClassComment>[];
 
       var result = callMethod(returnType, params, paramsNamed);
 
@@ -131,8 +141,8 @@ void main() {
 
     test("2 d", () {
       var returnType = "List<String>";
-      var params = <String>[];
-      var paramsNamed = [NameType("param1", "String"), NameType("param2", "int")];
+      var params = <NameTypeClassComment>[];
+      var paramsNamed = [NameTypeClassComment("param1", "String", null), NameTypeClassComment("param2", "int", null)];
 
       var result = callMethod(returnType, params, paramsNamed);
 
@@ -141,8 +151,8 @@ void main() {
 
     test("3 d zero parameters", () {
       var returnType = "List<String>";
-      var params = <String>[];
-      var paramsNamed = <NameType>[];
+      var params = <NameTypeClassComment>[];
+      var paramsNamed = <NameTypeClassComment>[];
 
       var result = callMethod(returnType, params, paramsNamed);
 
@@ -151,8 +161,8 @@ void main() {
 
     test("4 d mixture named and positional", () {
       var returnType = "List<String>";
-      var params = <String>["String"];
-      var paramsNamed = [NameType("param2", "String")];
+      var params = [NameTypeClassComment("param1", "String", null)];
+      var paramsNamed = [NameTypeClassComment("param2", "String", null)];
 
       var result = callMethod(returnType, params, paramsNamed);
 
@@ -161,10 +171,10 @@ void main() {
 
     test("5 d mixture named and positional and non null", () {
       var returnType = "List<String>";
-      var params = <String>["String"];
+      var params = [NameTypeClassComment("param1", "String", null)];
       var paramsNamed = [
-        NameType("b", "String?"),
-        NameType("c", "int"),
+        NameTypeClassComment("b", "String?", null),
+        NameTypeClassComment("c", "int", null),
       ];
 
       var result = callMethod(returnType, params, paramsNamed);
