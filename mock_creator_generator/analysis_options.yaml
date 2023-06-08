@@ -3,8 +3,6 @@ linter:
     camel_case_types: false
 
 analyzer:
-  enable-experiment:
-    - non-nullable
   strong-mode:
     implicit-casts: false
 #    implicit-dynamic: false

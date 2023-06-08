@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/src/builder/build_step.dart';
+import 'package:generator_common/NameType.dart';
 import 'package:generator_common/helpers.dart';
 import 'package:mock_creator_annotation/mock_creator_annotation.dart';
 import 'package:mock_creator_generator/src/createMockCreator.dart';
@@ -24,13 +25,26 @@ class MockCreatorGenerator extends GeneratorForAnnotationX<MockCreator> {
       var name = element.name;
       var callMethod = element.getMethod("call");
 
-      var methodDetails = getMethodDetailsForFunctionType(callMethod, (x) {});
+      if (callMethod == null) {
+        throw Exception("Class $name must have a call method");
+      }
+
+      var paramsPositional2 = callMethod.parameters //
+          .where((x) => x.isPositional)
+          .map((e) => NameTypeClassComment(e.name, e.type.toString(), null))
+          .toList();
+      var paramsNamed2 = callMethod.parameters //
+          .where((x) => x.isNamed)
+          .map((e) => NameTypeClassComment(e.name, e.type.toString(), null))
+          .toList();
+
+      // var methodDetails = getMethodDetailsForFunctionType(callMethod, (x) {});
 
       sb.writeln(createMockCreator(
         className: name,
-        returnType: methodDetails.returnType.toString(),
-        paramsNormal: methodDetails.paramsPositional,
-        paramsNamed: methodDetails.paramsNamed,
+        returnType: callMethod.returnType.toString(),
+        paramsNormal: paramsPositional2,
+        paramsNamed: paramsNamed2,
       ));
     }
 

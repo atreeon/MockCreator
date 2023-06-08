@@ -31,12 +31,14 @@ String functionDefinition(
     return "${x.type} ${String.fromCharCode(index++ + 97)}";
   }).join(", ");
 
-  var strParamsNamed = paramsNamed
-      .map((x) => //
-          x.type.contains("?") //
-              ? "${x.type} ${String.fromCharCode(index++ + 97)}"
-              : "required ${x.type} ${String.fromCharCode(index++ + 97)}")
-      .join(", ");
+  var strParamsNamed = paramsNamed.map((x) {
+    assert(x.type != null);
+    var paramType = x.type!;
+
+    return paramType.contains("?") //
+        ? "${paramType} ${String.fromCharCode(index++ + 97)}"
+        : "required ${paramType} ${String.fromCharCode(index++ + 97)}";
+  }).join(", ");
 
   var params = [
     if (paramsPositional.isNotEmpty) //
@@ -85,11 +87,13 @@ String callMethod(
 //      .join(", ");
 
   paramsNamed.forEach((x) {
-    if (x.type.contains("?")) {
-      paramsNamedCallSignature.add("${x.type} ${x.name}");
+    var paramType = x.type!;
+
+    if (paramType.contains("?")) {
+      paramsNamedCallSignature.add("${paramType} ${x.name}");
       paramsNamedFunction.add(String.fromCharCode(index + 97) + ":${x.name}");
     } else {
-      paramsNamedCallSignature.add("required ${x.type} ${x.name}");
+      paramsNamedCallSignature.add("required ${paramType} ${x.name}");
       paramsNamedFunction.add(String.fromCharCode(index + 97) + ":${x.name}");
     }
     index++;

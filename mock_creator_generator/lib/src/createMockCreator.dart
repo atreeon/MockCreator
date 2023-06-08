@@ -1,12 +1,11 @@
 import 'package:generator_common/NameType.dart';
-import 'package:meta/meta.dart';
 import 'package:mock_creator_generator/src/helpers.dart';
 
 String createMockCreator({
-  @required String className,
-  @required String returnType,
-  @required List<NameTypeClassComment> paramsNormal,
-  @required List<NameTypeClassComment> paramsNamed,
+  required String className,
+  required String returnType,
+  required List<NameTypeClassComment> paramsNormal,
+  required List<NameTypeClassComment> paramsNamed,
 }) {
   var sb = StringBuffer();
 
