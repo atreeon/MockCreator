@@ -17,7 +17,10 @@ dependencies:
       ref: master
   meta: ^1.1.8
   mock_creator_annotation:
-    path: ../mock_creator_annotation
+    git:
+      url: https://github.com/atreeon/MockCreator.git
+      path: mock_creator_annotation
+      ref: master
 
 dependency_overrides:
   mock_creator_annotation:
