@@ -5,7 +5,10 @@ environment:
 
 dependencies:
   mock_creator_annotation:
-    path: ../mock_creator_annotation
+    git:
+      url: https://github.com/atreeon/MockCreator.git
+      path: mock_creator_annotation
+      ref: master
   quiver_hashcode:
     git: https://github.com/atreeon/quiver_hashcode
 

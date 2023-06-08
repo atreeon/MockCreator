@@ -8,7 +8,7 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
-  analyzer: '>=1.7.0 <=4.4.0'
+  analyzer: '>=1.7.0 <=5.12.0'
   build: ^2.1.1
   source_gen: ^1.1.1
   generator_common:
