@@ -182,4 +182,16 @@ void main() {
       expect(result, "List<String> call(String a, {String? b, required int c}) => fn(a, b:b, c:c);");
     });
   });
+
+  group("createSuper", () {
+    test("2 a", () {
+      var result = createSuperConstructor(3);
+      expect(result, " : super(null, null, null)");
+    });
+
+    test("2 b", () {
+      var result = createSuperConstructor(0);
+      expect(result, " : super()");
+    });
+  });
 }

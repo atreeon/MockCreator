@@ -25,3 +25,19 @@ class SalutationAppender_Mock extends SalutationAppender {
       fn(a);
 }
 ```
+
+Dependencies that are set in the constructor must be nullable
+```
+@MockCreator()
+class GetMousePolygon {
+  double Function()? $getPreviousShape;
+  double Function()? $getXMouse;
+  double Function()? $getYMouse;
+
+  GetMousePolygon(this.$getPreviousShape, this.$getXMouse, this.$getYMouse);
+
+  List<double> call() {
+    return [$getPreviousShape!(), $getXMouse!(), $getYMouse!()];
+  }
+}
+```

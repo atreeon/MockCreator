@@ -10,15 +10,13 @@ import 'package:source_gen/source_gen.dart';
 import 'GeneratorForAnnotationX.dart';
 
 class MockCreatorGenerator extends GeneratorForAnnotationX<MockCreator> {
-  FutureOr<String> generateForAnnotatedElement(
-    Element element,
-    ConstantReader annotation,
-    BuildStep buildStep,
-    List<ClassElement> allClasses,
-  ) {
+  FutureOr<String> generateForAnnotatedElement(Element element,
+      ConstantReader annotation,
+      BuildStep buildStep,
+      List<ClassElement> allClasses,) {
     var sb = StringBuffer();
 
-    sb.writeln("//RULES: 1: must be a class, 2: must have a call method");
+    sb.writeln("//RULES: 1: must be a class, 2: must have a call method, 3: all dependencies must be nullable");
 
     if (element is ClassElement) {
       var name = element.name;
@@ -39,11 +37,15 @@ class MockCreatorGenerator extends GeneratorForAnnotationX<MockCreator> {
 
       // var methodDetails = getMethodDetailsForFunctionType(callMethod, (x) {});
 
+      var constructor = element.constructors[0];
+      var constructorParamsCount = constructor.parameters.length;
+
       sb.writeln(createMockCreator(
         className: name,
         returnType: callMethod.returnType.toString(),
         paramsNormal: paramsPositional2,
         paramsNamed: paramsNamed2,
+        constructorParamsCount: constructorParamsCount,
       ));
     }
 

@@ -17,11 +17,12 @@ void main() {
         returnType: returnType,
         paramsNormal: params,
         paramsNamed: <NameTypeClassComment>[],
+        constructorParamsCount: 2,
       );
 
       var expected = """class Stuffer_Mock extends Stuffer {
 final List<String> Function(String a, List<String> b) fn;
-Stuffer_Mock(this.fn);
+Stuffer_Mock(this.fn) : super(null, null);
 List<String> call(String a, List<String> b) => fn(a, b);
 }
 

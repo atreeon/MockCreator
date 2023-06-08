@@ -1,6 +1,6 @@
 name: mock_creator_generator
 description: Creates a mock for classes with a single call method making it easy for us to create those mocks automatically.
-version: 1.0.17
+version: 1.0.18
 homepage: https://github.com/atreeon/MockCreator
 publish_to: none
 

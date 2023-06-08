@@ -52,7 +52,7 @@ String functionDefinition(
 
 //SalutationAppender_Mock(this.fn);
 String constructorSignature(String className) {
-  return "${className}_Mock(this.fn);";
+  return "${className}_Mock(this.fn)";
 }
 
 //List<String> call(String a, List<String> b) => fn(a, b);
@@ -114,6 +114,10 @@ String callMethod(
   ].join(", ");
 
   return "$returnType call($callSig) => fn($fnParams);";
+}
+
+String createSuperConstructor(int constructorParamsCount) {
+  return " : super(${List.generate(constructorParamsCount, (index) => "null").join(", ")})";
 }
 
 String createFnDef(
